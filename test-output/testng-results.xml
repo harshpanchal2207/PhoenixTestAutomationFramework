@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-03-30T15:37:52 IST" name="Default suite" finished-at="2026-03-30T15:38:01 IST" duration-ms="8955">
+    <groups>
+    </groups>
+    <test started-at="2026-03-30T15:37:52 IST" name="Default test" finished-at="2026-03-30T15:38:01 IST" duration-ms="8955">
+      <class name="com.api.test.MasterAPITest">
+        <test-method signature="invalidTokenMasterAPITest()[pri:0, instance:com.api.test.MasterAPITest@4a883b15]" started-at="2026-03-30T15:37:52 IST" name="invalidTokenMasterAPITest" finished-at="2026-03-30T15:37:55 IST" duration-ms="3534" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidTokenMasterAPITest -->
+        <test-method signature="masterAPITest()[pri:0, instance:com.api.test.MasterAPITest@4a883b15]" started-at="2026-03-30T15:37:55 IST" name="masterAPITest" finished-at="2026-03-30T15:38:01 IST" duration-ms="5379" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- masterAPITest -->
+      </class> <!-- com.api.test.MasterAPITest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
