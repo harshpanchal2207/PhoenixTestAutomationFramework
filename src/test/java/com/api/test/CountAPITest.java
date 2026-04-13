@@ -1,17 +1,24 @@
 package com.api.test;
 
-import static org.hamcrest.Matchers.*;
+import static com.api.utils.SpecUtil.*;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.blankOrNullString;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+
+import java.io.IOException;
+
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import static com.api.utils.AuthTokenProvider.*;
-import com.api.utils.ConfigManager;
+import com.api.utils.SpecUtil;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
-
-import static io.restassured.RestAssured.*;
-
-import java.io.IOException;
+import io.restassured.http.ContentType;
 
 public class CountAPITest {
 
@@ -20,17 +27,11 @@ public class CountAPITest {
 		
 		
 		given()
-			.baseUri(ConfigManager.getProperty("BASE_URI"))
-			.and()
-			.header("Authorization", getAuthToken(Role.FD))
-			.log().uri()
-			.log().method()
-			.log().headers()
+			.spec(requestspecwithauth(Role.FD))
 		.when()
 			.get("/dashboard/count")
 		.then()
-			.log().all()
-			.statusCode(200)
+			.spec(responsespec())
 			.body("message", equalTo("Success"))
 			.body("data", notNullValue())
 			.body("data.size()", equalTo(3))
@@ -45,16 +46,10 @@ public class CountAPITest {
 	@Test
 	public void countAPITest_MissingAuthToken() throws IOException {
 		given()
-			.baseUri(ConfigManager.getProperty("BASE_URI"))
-			.and()
-			.log().uri()
-			.log().method()
-			.log().headers()
+			.spec(SpecUtil.requestspec())
 		.when()
 			.get("/dashboard/count")
 	    .then()
-			.log().all()
-			.statusCode(401);
+			.spec(responsespec(401, ContentType.HTML));
 	}
-
 }
